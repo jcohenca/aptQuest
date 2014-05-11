@@ -22,26 +22,36 @@
   overflow-x: hidden;
 }
 
-#hero {
+/*#hero {
   background-image: url('bg.png');
   height: 500px;
   width: 100%;
 }
+*/
+
+h1 {
+  text-align: center;
+}
 
 body {
-  background-image: url('felt.png');
+  background-image: url('stardust.png');
   font-family: Century Gothic, sans-serif;
 }
 
 #search-form {
-  color: white;
   padding: 10px;
+  text-align: center;
+    margin-left: auto;
+    margin-right: auto
 }
 
 #map-canvas {
   width: 350px;
   height: 350px;
   display: block;
+  display: block;
+    margin-left: auto;
+    margin-right: auto
 }
 
 a:link {color:#FF0000;}     
