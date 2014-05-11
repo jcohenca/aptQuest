@@ -1,0 +1,10 @@
+<% @search.each do |search| %>
+<p><%= search.id %>: <%= search.input %></p>
+
+ <%= form_for search do |f| %>  
+    <%= link_to '(remove)', search, :method => :delete, data: {confirm: "Are you sure you want to remove this search? This cannot be undone."}, remote: true %>
+    <% end %>
+
+
+<% end %>
+
