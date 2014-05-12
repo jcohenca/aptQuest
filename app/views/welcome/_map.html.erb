@@ -35,8 +35,8 @@
       select:function(event, ui) {
         var location    =   new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
         marker          =   new google.maps.Marker({
-          map: map,
-          draggable: true
+        map:                map,
+        draggable:          true
         })
 
         var stringValue =   'Latitude: <input type="text" value ="'+ui.item.latitude+'" >Longitude:<input type="text" value="'+ui.item.longitude+'"><br/>';
@@ -53,17 +53,21 @@
   </head>
 
   <body onload="initialize()">
-    <div id="search-form"><form action="/searches/new" method="get">
-      <label for="name">Enter Address:</label>
-      <input type="text" name="auto" id="autocomplete">
-      <button>Search</button>
-    </form></div>
+      <div id="search-form"><form action="/searches/new" method="get">
+        <label for="name">Enter Address:</label>
+        <input type="text" name="auto" id="autocomplete">
+        <button id="search-button">Search</button>
+      </form></div>
 
-    <div id="map-canvas">
-      </div>
 
-    <div id="value">
-      </div>
+   <%= link_to 'Search', new_search_path, :remote => true %>
+
+
+      <div id="map-canvas">
+        </div>
+
+      <div id="value">
+        </div>
 
   </body> 
 </html>
