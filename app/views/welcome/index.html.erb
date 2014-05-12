@@ -1,22 +1,22 @@
 
-  <!-- <h1> aptQuest </h1> -->
-  <h1> <%= image_tag('logo3.png') %></h1>
-    <body>
-      <div id="hero">
-      <div id="map">
-
-      </div>
-
-    
-    <div id="search-form"><form action="/searches/new" data-remote="true" method="get">
-      <label for="name">Enter Address:</label>
-      <input type="text" name="auto" id="autocomplete">
-      <button id="search-button">Search</button>
-    </form></div>
+<!-- <h1> aptQuest </h1> -->
+<h1> <%= image_tag('logo3.png') %></h1>
+<div id="hero">
+<div id="map">
+</div>
 
 
-    
- 
+<div id="search-form">
+  <%= form_tag "/searches/new", method: :get, remote: true do  %>
+    <%= label_tag :name, "Enter Address" %>
+    <%= text_field_tag :auto, "", id: "autocomplete" %>
+    <%= button_tag "Search",  id: "search-button" %>
+  <% end %>
+</div>
 
+<div id="map-canvas">
+</div>
 
-    </body> 
+<div id="value">
+</div>
+

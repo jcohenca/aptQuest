@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require jquery.ui.all
  *= require_self
  */
 
@@ -54,11 +55,10 @@ body {
 #map-canvas {
   width: 350px;
   height: 350px;
-  display: block;
-  display: block;
+
   margin-left: auto;
   margin-right: auto;
-  padding: 40px;
+
 }
 
 #value {

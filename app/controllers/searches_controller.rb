@@ -10,14 +10,18 @@ class SearchesController < ApplicationController
   end
 
   def new
-
     if current_user
       @new_search = Search.new(input: params[:auto], user_id: current_user.id)
       @new_search.save
-      redirect_to :root
-
+      respond_to do |format|
+        format.html {redirect_to :root}
+        format.js {}
+      end
     else
-      redirect_to :root
+      respond_to do |format|
+        format.html {redirect_to :root}
+        format.js {} 
+      end
 
     end
 
