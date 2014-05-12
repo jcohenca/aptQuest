@@ -31,6 +31,8 @@ gem "rspec-rails"
 gem "pry-rails"
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'yelpster'
+gem 'httparty'
 
 
 # Use ActiveModel has_secure_password

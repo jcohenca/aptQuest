@@ -4,4 +4,11 @@ class WelcomeController < ApplicationController
   end
 
 
+
+
+def render_map
+  render :partial => 'map'
+end
+
+
 end

@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
 
 
   def index
-    @search = Search.all
+    @response = Search.yelp_search
   end
 
   def show
@@ -14,20 +14,12 @@ class SearchesController < ApplicationController
     if current_user
       @new_search = Search.new(input: params[:auto], user_id: current_user.id)
       @new_search.save
-
       redirect_to :root
 
     else
       redirect_to :root
 
     end
-
-    # respond_to do |format|
-    #   format.html { redirect_to '/' }
-    #   format.js {  }
-
-    # end
-
 
   end
 
@@ -47,3 +39,5 @@ class SearchesController < ApplicationController
 
 
 end
+
+
