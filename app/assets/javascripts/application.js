@@ -53,11 +53,11 @@ function handleAutocomplete() {
       })
 
       var stringValue =   'Latitude: <input type="text" value ="'+ui.item.latitude+'" >Longitude:<input type="text" value="'+ui.item.longitude+'"><br/>';
+
       $('#value').append(stringValue);
 
       marker.setPosition(location);
       map.setCenter(location);
-
     }
   })
 }
@@ -65,5 +65,8 @@ function handleAutocomplete() {
 $(document).ready(function() {
   initializeMap();
   handleAutocomplete();
-  $('#map-canvas').hide();
+  // $('#map-canvas').hide();
+  $('#value').hide()
+  
+
 }); 

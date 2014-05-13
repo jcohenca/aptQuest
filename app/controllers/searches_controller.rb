@@ -9,6 +9,7 @@ class SearchesController < ApplicationController
 
   end
 
+  #saves searches only if a user is signed in
   def new
     if current_user
       @new_search = Search.new(input: params[:auto], user_id: current_user.id)
@@ -29,7 +30,6 @@ class SearchesController < ApplicationController
 
   def destroy
     @search = Search.destroy(params[:id])
-
 
     respond_to do |format|
       format.html { redirect_to '/' }

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users
   resources :searches
 
-  # delete 'users/:id' to: 'searches#destroy'
+  # get '/', to: 
 
 end
+
+
+# $('#value').children()[0].value

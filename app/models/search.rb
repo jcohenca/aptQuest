@@ -9,19 +9,34 @@ class Search < ActiveRecord::Base
                  :token_secret    => 'OAEAtQPZnhna33YkLPzsR43hpJU')
 
 
-  def self.yelp_search(type)
+  def self.yelp_search(term)
 
     client = Yelp::Client.new
     request = Yelp::V2::Search::Request::GeoPoint.new(
-                :term            =>  type,
-                :latitude        => '40.76741260000001',  
-                :longitude       => '-73.98381810000001')
-
+                :term            =>  term,
+                :latitude        => '40.740289',  
+                :longitude       => '-73.981314')
+   
     response = client.search(request)
-    final_return = response["businesses"].sort_by {|b| b["distance"]}.first["name"]
+    final_return = response["businesses"].sort_by {|x| x["distance"]}.first["name"]
 
   end 
-  end
+
+
+    def self.distance(term)
+
+    client = Yelp::Client.new
+    request = Yelp::V2::Search::Request::GeoPoint.new(
+                :term            =>  term,
+                :latitude        => '40.740289',  
+                :longitude       => '-73.981314')
+   
+    response = client.search(request)
+    final_return = response["businesses"].sort_by {|x| x["distance"]}.first["distance"]
+  end 
+
+
+end
 
  
 

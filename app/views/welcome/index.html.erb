@@ -5,7 +5,7 @@
 <div id="map">
 </div>
 
-
+<!-- address search bar -->
 <div id="search-form">
   <%= form_tag "/searches/new", method: :get, remote: true do  %>
     <%= label_tag :name, "Enter Address" %>
@@ -16,22 +16,26 @@
 
 
 
-<% if false  %>
 <ul>
-    <li><%= @gym %></li>
-    <li><%= @groceries %></li>
-    <li><%= @alcohol %></li>
-    <li><%= @haircut %></li>
-    <li><%= @library %></li>
-    <li><%= @cafe %></li>
-    <li><%= @movies %></li>
-    <li><%= @bars %></li>
-    <li><%= @park %></li>
+    <li><%= @gym %> - <%= @gym_dis.meter.convert_to('mile') %>s  
+    
+
+    <li><%= @groceries %>  - <%= @gym_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @alcohol %>  - <%= @alcohol_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @haircut %>  - <%= @haircut_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @library %>  - <%= @library_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @cafe %>  - <%= @cafe_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @movies %> - <%= @movies_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @bars %> - <%= @bars_dis.meter.convert_to('mile') %>s  </li>
+    <li><%= @park %> - <%= @park_dis.meter.convert_to('mile') %>s  </li>
 </ul>
 
-<% end %>
 
 
+
+
+
+<!-- renders google map -->
 <div id="map-canvas">
 </div>
 
