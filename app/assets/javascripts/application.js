@@ -13,60 +13,73 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+
 //= require turbolinks
 //= require_tree .
 
 
-var map;
-var geocoder;
-function initializeMap() {
+// var map;
+// var geocoder;
+// function initializeMap() {
 
-  var myLatLong = new google.maps.LatLng();
-  var myOptions = {
-                      zoom: 16,
-                      center: myLatLong,
-                      mapTypeId:google.maps.MapTypeId.ROADMAP
-                  };
-  map           = new google.maps.Map(document.getElementById('map-canvas'),myOptions);
-  geocoder      = new google.maps.Geocoder();
-}
+//   var myLatLong = new google.maps.LatLng();
+//   var myOptions = {
+//                       zoom: 16,
+//                       center: myLatLong,
+//                       mapTypeId:google.maps.MapTypeId.ROADMAP
+//                   };
+//   map           = new google.maps.Map(document.getElementById('map-canvas'),myOptions);
+//   geocoder      = new google.maps.Geocoder();
+// }
 
-function handleAutocomplete() {
-  $("#autocomplete").autocomplete({
-    source: function(request, response) {
-      geocoder.geocode({'address':request.term}, function(results) {
-        response($.map(results, function(item) {
-            return {
-              label: item.formatted_address, 
-              value: item.formatted_address,
-              latitude: item.geometry.location.lat(),
-              longitude: item.geometry.location.lng(),
-            }
-        }))
-      })
-    },
-    select:function(event, ui) {
-      var location    =   new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-      marker          =   new google.maps.Marker({
-      map:                map,
-      draggable:          true
-      })
+// function handleAutocomplete() {
+//   $("#autocomplete").autocomplete({
+//     source: function(request, response) {
+//       geocoder.geocode({'address':request.term}, function(results) {
+//         response($.map(results, function(item) {
+//             return {
+//               label: item.formatted_address, 
+//               value: item.formatted_address,
+//               latitude: item.geometry.location.lat(),
+//               longitude: item.geometry.location.lng(),
+//             }
+//         }))
+//       })
+//     },
+//     select:function(event, ui) {
+//       var location    =   new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
+//       marker          =   new google.maps.Marker({
+//       map:                map,
+//       draggable:          true
+//       })
 
-      var stringValue =   'Latitude: <input type="text" value ="'+ui.item.latitude+'" >Longitude:<input type="text" value="'+ui.item.longitude+'"><br/>';
+//       var stringValue =   'Latitude: <input type="text" value ="'+ui.item.latitude+'" >Longitude:<input type="text" value="'+ui.item.longitude+'"><br/>';
 
-      $('#value').append(stringValue);
+//       $('#value').append(stringValue);
 
-      marker.setPosition(location);
-      map.setCenter(location);
-    }
-  })
-}
+//       marker.setPosition(location);
+//       map.setCenter(location);
+//     }
+//   })
+// }
 
-$(document).ready(function() {
-  initializeMap();
-  handleAutocomplete();
-  // $('#map-canvas').hide();
-  $('#value').hide()
+
+// // service = new google.maps.places.PlacesService(map);
+// // service.textSearch(request, callback);
+
+// $(document).ready(function() {
+//   initializeMap();
+//   handleAutocomplete();
+//   // $('#map-canvas').hide();
+//   $('#value').hide()
   
 
-}); 
+// }); 
+
+
+
+
+
+
+
+//  new variable for places 

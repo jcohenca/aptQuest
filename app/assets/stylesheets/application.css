@@ -39,7 +39,7 @@ h1 {
 body {
   background-image: url('tweed.png');
   font-family: Century Gothic, sans-serif;
-  color: white;
+  color: black;
 }
 
 #search-form {
@@ -53,8 +53,8 @@ body {
 }
 
 #map-canvas {
-  width: 250px;
-  height: 250px;
+  width: 350px;
+  height: 350px;
 
   margin-left: auto;
   margin-right: auto;

@@ -6,20 +6,19 @@
 </div>
 
 <!-- address search bar -->
-<div id="search-form">
-  <%= form_tag "/searches/new", method: :get, remote: true do  %>
-    <%= label_tag :name, "Enter Address" %>
-    <%= text_field_tag :auto, "", id: "autocomplete" %>
-    <%= button_tag "Search",  id: "search-button" %>
-  <% end %>
-</div>
 
+    <div id="search-form">
+      <form action="/searches/new" data-remote="true" method="get">
+      <label for="name">Enter Address:</label>
+      <input id="address" name="auto" type="textbox" value="">
+      <button id="search-button" onclick="codeAddress()">Enter Address</button>
+    </div>
 
+<%= render 'map' %>
 
+<% if false %>
 <ul>
     <li><%= @gym %> - <%= @gym_dis.meter.convert_to('mile') %>s  
-    
-
     <li><%= @groceries %>  - <%= @gym_dis.meter.convert_to('mile') %>s  </li>
     <li><%= @alcohol %>  - <%= @alcohol_dis.meter.convert_to('mile') %>s  </li>
     <li><%= @haircut %>  - <%= @haircut_dis.meter.convert_to('mile') %>s  </li>
@@ -29,7 +28,7 @@
     <li><%= @bars %> - <%= @bars_dis.meter.convert_to('mile') %>s  </li>
     <li><%= @park %> - <%= @park_dis.meter.convert_to('mile') %>s  </li>
 </ul>
-
+<% end %>
 
 
 
