@@ -15,25 +15,22 @@
  *= require_self
  */
 
+/*
 
-
-.ui-autocomplete { 
-  max-height:200px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-/*#hero {
+#hero {
   background-image: url('bg3.png');
   background-size: 100%;
-  height: 500px;
+  height: 275px;
   width: 100%;
-  background-position: fixed;
+  margin-top: -30px;
+  z-index: -1;
+  position:absolute;
 }
 */
-
-h1 {
+#logo {
   text-align: center;
+  margin-top: 30px;
+  z-index: -1;  
 }
 
 body {
@@ -42,20 +39,27 @@ body {
   color: black;
 }
 
-#search-form {
+#container {
+  width: 351px;
+  margin: 0px auto;
+  background: grey;
+  float: left;
+  padding: 0px;
+}
 
+#search-form {
   font-weight: bold;
   font-size: 22px;
-  padding: 10px;
   text-align: center;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+  font-family: Century Gothic, sans-serif;
 }
 
 #map-canvas {
   width: 350px;
   height: 350px;
-
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 

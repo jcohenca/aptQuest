@@ -38,11 +38,12 @@
     findNearbyPlaces(currentLocation);
   }
 
-  function findNearbyPlaces(searchLocation) {
+
+  function findNearbyPlaces(searchLocation, type) {
     var request = {
       location: searchLocation,
       radius: 500,
-      types: (['gym'])
+      types: [type]
     };
    service.nearbySearch(request, handleResults); 
   }
@@ -53,9 +54,10 @@
         createMarker(results[i]);
       }
     }
-  }
+
 
   function createMarker(place) {
+
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
       map: map,
@@ -69,9 +71,11 @@
       infowindow.open(map, this);
     });
   }
-
+  }
+  var address;
   function updateMapAddress() {
-    var address = document.getElementById('address').value;
+    $('#container').show();
+    address = document.getElementById('address').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         newLocation = results[0].geometry.location;
@@ -82,8 +86,10 @@
             animation: google.maps.Animation.DROP,
             position: newLocation,
         });
-        
-        findNearbyPlaces(newLocation);
+       $('.select-search').click(function(){
+          var searchType = $(this).text();
+          findNearbyPlaces(newLocation, searchType);
+        });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -91,7 +97,10 @@
   }
 
 $(document).ready(function(){
+  $('#container').hide();
+  // $("#map-canvas").hide()
   google.maps.event.addDomListener(window, 'load', initialize);
+
 });
 
 
