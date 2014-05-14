@@ -15,7 +15,7 @@
 //= require jquery.ui.all
 //= require turbolinks
 //= require_tree .
-
+  var searchIcon;
   var map;
   var infowindow;
   var geocoder;
@@ -39,7 +39,6 @@
     findNearbyPlaces(currentLocation);
   }
 
-
   function findNearbyPlaces(searchLocation, type) {
     var request = {
       location: searchLocation,
@@ -57,38 +56,32 @@
       }
     }
  
-
-
   function createMarker(place) {
-
+    var image           =  '/assets/' + searchIcon;
     var placeLoc        = place.geometry.location;
     marker              = new google.maps.Marker({
       map: map,
       title: place.name,
+      icon: image,
       animation: google.maps.Animation.DROP,
       position: place.geometry.location,
     });
-
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(place.name);
       infowindow.open(map, this);
       });
     }
-  
-}
+  }
 
  function clearMarkers() {
     setAllMap(null);
   }
 
-function setAllMap(map) {
+  function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
+    }
   }
-}
-
-
-
 
   var address;
   function updateMapAddress() {
@@ -105,6 +98,7 @@ function setAllMap(map) {
             position: newLocation,
         });
        $('.select-search').click(function(){
+          searchIcon = $(this).text() + ".png"
           var searchType = $(this).val();
           findNearbyPlaces(newLocation, searchType);
         });
