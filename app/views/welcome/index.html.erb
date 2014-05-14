@@ -2,7 +2,7 @@
 <!-- <h1> aptQuest </h1> -->
 <h1> <%= image_tag('logo3.png') %></h1>
 <div id="hero">
-<div id="map">
+
 </div>
 
 <!-- address search bar -->
@@ -11,10 +11,10 @@
       <form action="/searches/new" data-remote="true" method="get">
       <label for="name">Enter Address:</label>
       <input id="address" name="auto" type="textbox" value="">
-      <button id="search-button" onclick="codeAddress()">Enter Address</button>
+      <button id="search-button" onclick="updateMapAddress()">Enter Address</button>
     </div>
 
-<%= render 'map' %>
+
 
 <% if false %>
 <ul>

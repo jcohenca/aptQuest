@@ -13,73 +13,86 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-
 //= require turbolinks
 //= require_tree .
 
-
-// var map;
-// var geocoder;
-// function initializeMap() {
-
-//   var myLatLong = new google.maps.LatLng();
-//   var myOptions = {
-//                       zoom: 16,
-//                       center: myLatLong,
-//                       mapTypeId:google.maps.MapTypeId.ROADMAP
-//                   };
-//   map           = new google.maps.Map(document.getElementById('map-canvas'),myOptions);
-//   geocoder      = new google.maps.Geocoder();
-// }
-
-// function handleAutocomplete() {
-//   $("#autocomplete").autocomplete({
-//     source: function(request, response) {
-//       geocoder.geocode({'address':request.term}, function(results) {
-//         response($.map(results, function(item) {
-//             return {
-//               label: item.formatted_address, 
-//               value: item.formatted_address,
-//               latitude: item.geometry.location.lat(),
-//               longitude: item.geometry.location.lng(),
-//             }
-//         }))
-//       })
-//     },
-//     select:function(event, ui) {
-//       var location    =   new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-//       marker          =   new google.maps.Marker({
-//       map:                map,
-//       draggable:          true
-//       })
-
-//       var stringValue =   'Latitude: <input type="text" value ="'+ui.item.latitude+'" >Longitude:<input type="text" value="'+ui.item.longitude+'"><br/>';
-
-//       $('#value').append(stringValue);
-
-//       marker.setPosition(location);
-//       map.setCenter(location);
-//     }
-//   })
-// }
+  var map;
+  var infowindow;
+  var geocoder;
+  var service;
 
 
-// // service = new google.maps.places.PlacesService(map);
-// // service.textSearch(request, callback);
+  function initialize() {
+    var currentLocation = new google.maps.LatLng(40.740289, -73.981314);
+    
+    geocoder = new google.maps.Geocoder();
 
-// $(document).ready(function() {
-//   initializeMap();
-//   handleAutocomplete();
-//   // $('#map-canvas').hide();
-//   $('#value').hide()
-  
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      center: currentLocation,
+      zoom: 15  ,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-// }); 
+    infowindow = new google.maps.InfoWindow();
+    service = new google.maps.places.PlacesService(map);
+    findNearbyPlaces(currentLocation);
+  }
+
+  function findNearbyPlaces(searchLocation) {
+    var request = {
+      location: searchLocation,
+      radius: 500,
+      types: (['gym'])
+    };
+   service.nearbySearch(request, handleResults); 
+  }
+
+  function handleResults(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+    }
+  }
+
+  function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      title: place.name,
+      animation: google.maps.Animation.DROP,
+      position: place.geometry.location,
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+    });
+  }
+
+  function updateMapAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        newLocation = results[0].geometry.location;
+        map.setCenter(newLocation);
+        
+        var marker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.DROP,
+            position: newLocation,
+        });
+        
+        findNearbyPlaces(newLocation);
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+$(document).ready(function(){
+  google.maps.event.addDomListener(window, 'load', initialize);
+});
 
 
 
-
-
-
-
-//  new variable for places 
