@@ -1,19 +1,16 @@
 class SearchesController < ApplicationController
 
-
   def index
     @response = Search.yelp_search
   end
 
   def show
-
   end
 
   #saves searches only if a user is signed in
   def new
     if current_user
-      @new_search = Search.new(input: params[:auto], user_id: current_user.id)
-      @new_search.save
+      @new_seach = Search.find_or_create_by(input: params[:auto], user_id: current_user.id)
       respond_to do |format|
         format.html {redirect_to :root}
         format.js {}
@@ -23,9 +20,7 @@ class SearchesController < ApplicationController
         format.html {redirect_to :root}
         format.js {} 
       end
-
     end
-
   end
 
   def destroy
@@ -34,14 +29,8 @@ class SearchesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to '/' }
       format.js {  }
-
     end
-
-  
   end
-
-
-
 end
 
 

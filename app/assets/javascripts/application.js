@@ -20,21 +20,22 @@
   var infowindow;
   var geocoder;
   var service;
-
+  var marker;
+  var markers = [];
 
   function initialize() {
-    var currentLocation = new google.maps.LatLng(40.740289, -73.981314);
-    
-    geocoder = new google.maps.Geocoder();
 
-    map = new google.maps.Map(document.getElementById('map-canvas'), {
-      center: currentLocation,
-      zoom: 15  ,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+    var currentLocation   = new google.maps.LatLng(40.740289, -73.981314);
+    geocoder              = new google.maps.Geocoder();
+    map                   = new google.maps.Map(document.getElementById('map-canvas'), {
+
+    center:       currentLocation,
+    zoom:         15,
+    mapTypeId:    google.maps.MapTypeId.ROADMAP 
     });
 
-    infowindow = new google.maps.InfoWindow();
-    service = new google.maps.places.PlacesService(map);
+    infowindow            = new google.maps.InfoWindow();
+    service               = new google.maps.places.PlacesService(map);
     findNearbyPlaces(currentLocation);
   }
 
@@ -52,14 +53,16 @@
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
+        markers.push(marker);
       }
     }
+ 
 
 
   function createMarker(place) {
 
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
+    var placeLoc        = place.geometry.location;
+    marker              = new google.maps.Marker({
       map: map,
       title: place.name,
       animation: google.maps.Animation.DROP,
@@ -69,9 +72,24 @@
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.setContent(place.name);
       infowindow.open(map, this);
-    });
+      });
+    }
+  
+}
+
+ function clearMarkers() {
+    setAllMap(null);
   }
+
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
   }
+}
+
+
+
+
   var address;
   function updateMapAddress() {
     $('#container').show();
@@ -80,14 +98,14 @@
       if (status == google.maps.GeocoderStatus.OK) {
         newLocation = results[0].geometry.location;
         map.setCenter(newLocation);
-        
+
         var marker = new google.maps.Marker({
             map: map,
-            animation: google.maps.Animation.DROP,
+            animation: google.maps.Animation.BOUNCE,
             position: newLocation,
         });
        $('.select-search').click(function(){
-          var searchType = $(this).text();
+          var searchType = $(this).val();
           findNearbyPlaces(newLocation, searchType);
         });
       } else {
