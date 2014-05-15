@@ -59,9 +59,13 @@ body {
 
 #container {
   left: 150px;
-  bottom: 44px;
+  bottom: 40px;
   position:absolute;
   padding: -10px;
+}
+
+button.select-search {
+  vertical-align: top;
 }
 
 #search-button {

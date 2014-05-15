@@ -72,7 +72,7 @@
         position: place.geometry.location,
       });
       google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name + "<br />" + place.formatted_address +"<br />" + '<a href=' + place.website + ">" + place.website + '</a>'  + "<br />" + place.formatted_phone_number);
+        infowindow.setContent(place.name + "<br />" + place.formatted_address +"<br />" + '<a href=' + place.website + ">" + place.website + '</a>'  + "<br />" + "Rating: " + place.rating + "<br />" + place.formatted_phone_number);
         infowindow.open(map, this);
       });
     });
