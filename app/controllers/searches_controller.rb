@@ -1,10 +1,11 @@
 class SearchesController < ApplicationController
 
   def index
-    @response = Search.yelp_search
+
   end
 
   def show
+    @search = Search.find(params[:id])
   end
 
   #saves searches only if a user is signed in

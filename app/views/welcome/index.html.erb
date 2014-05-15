@@ -9,27 +9,4 @@
       <button id="search-button" onclick="updateMapAddress()">Enter Address</button>
     </div>
 
-<!-- search selectors -->
-<div id="container">
-      <ul>
-        <p><%= image_tag 'accident.png' %><button class="select-search" onclick="clearMarkers()">Clear Markers</button></p>
-        <p><%= image_tag 'Gym.png' %><button class="select-search" value="gym">Gym</button></p>
-        <p><%= image_tag 'Bars.png' %><button class="select-search" value="bar">Bars</button></p>
-        <p><%= image_tag 'Groceries.png' %><button class="select-search" onclick="clearMarkers()" value="grocery_or_supermarket">Groceries</button></p>
-        <p><%= image_tag 'Movies.png' %><button class="select-search" onclick="clearMarkers()" value="movie_theater">Movies</button></p>
-        <p><%= image_tag 'Parks.png' %><button class="select-search" onclick="clearMarkers()" value="park">Parks</button></p>
-        <p><%= image_tag 'Liquor.png' %><button class="select-search" onclick="clearMarkers()" value="liquor_store">Liquor</button></p>
-        <p><%= image_tag 'Subway.png' %><button class="select-search" onclick="clearMarkers()" value="subway_station">Subway</button></p>
-        <p><%= image_tag 'Restaurants.png' %><button class="select-search" onclick="clearMarkers()" value="restaurant">Restaurants</button></p>
-        <p><%= image_tag 'Pharmacies.png' %><button class="select-search" onclick="clearMarkers()" value="pharmacy">Pharmacies</button></p>
-        <p><%= image_tag 'Doctor.png' %><button class="select-search" onclick="clearMarkers()" value="doctor">Doctor</button></p>
-        <p><%= image_tag 'ConvenienceStore.png' %><button class="select-search" onclick="clearMarkers()" value="convenience_store">ConvenienceStore</button></p>
-        <p><%= image_tag 'Laundry.png' %><button class="select-search" onclick="clearMarkers()" value="laundry">Laundry</button></p>
-      </ul>
-</div>
-
-<!-- renders google map -->
-<div id="map-canvas">
-</div>
-
-
+<%= render 'map' %>

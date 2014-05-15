@@ -1,22 +1,18 @@
 
 
   <h3>My Profile:</h3>
-  <p><strong>Name:</strong> <%= @user.name %></p>
-  <p><strong>Email:</strong> <%= @user.email %></p>
-  
-  <strong>My Searches:</strong> 
+  <strong>Name:</strong> <%= @user.name %><br>
+  <strong>Email:</strong> <%= @user.email %><br><br>
+  <strong>My Searches:</strong>
+  <br><br>
   <% @user.searches.each do |search| %>
-  <p id="<%= dom_id(search) %>">You searched: <%= link_to search.input, "/" %> at <%= search.updated_at.strftime("%I:%M%p on %m/%d/%Y") %><br></p>
+  <ul id="<%= dom_id(search) %>">You searched: <%= link_to search.input, search, onclick: 'initialize()'%> at <%= search.updated_at.strftime("%I:%M%p on %m/%d/%Y") %>
 
     <%= form_for search do |f| %>  
     <%= link_to '(remove)', search, :method => :delete, data: {confirm: "Are you sure you want to remove this search? This cannot be undone."}, remote: true %>
-    <% end %>
-
-  <% end %><br>
-
-  <br>Share searches with roomates!<br>
-
-
+    <% end %></ul>
+  <% end %>
+  
   <% if @user == current_user %>
   <br><%= link_to 'Edit profile', edit_user_registration_path, :class => 'button' %>
   <% end %>

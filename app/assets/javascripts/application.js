@@ -13,11 +13,12 @@
 
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require turbolinks
 //= require_tree .
+    
+
   var searchIcon;
   var map;
-  var infowindow;
+  var infowindow
   var geocoder;
   var service;
   var marker;
@@ -37,6 +38,7 @@
     infowindow            = new google.maps.InfoWindow();
     service               = new google.maps.places.PlacesService(map);
     findNearbyPlaces(currentLocation);
+
   }
 
   function findNearbyPlaces(searchLocation, type) {
@@ -55,22 +57,25 @@
         markers.push(marker);
       }
     }
+  }
  
   function createMarker(place) {
-    var image           =  '/assets/' + searchIcon;
+    var image           = '/assets/' + searchIcon;
     var placeLoc        = place.geometry.location;
-    marker              = new google.maps.Marker({
-      map: map,
-      title: place.name,
-      icon: image,
-      animation: google.maps.Animation.DROP,
-      position: place.geometry.location,
-    });
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
+    var grabInfo        = { reference: place.reference };
+    service.getDetails(grabInfo, function(place) {
+      marker            = new google.maps.Marker({
+        map: map,
+        title: place.name,
+        icon: image,
+        animation: google.maps.Animation.DROP,
+        position: place.geometry.location,
       });
-    }
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name + "<br />" + place.formatted_address +"<br />" + '<a href=' + place.website + ">" + place.website + '</a>'  + "<br />" + place.formatted_phone_number);
+        infowindow.open(map, this);
+      });
+    });
   }
 
  function clearMarkers() {
@@ -83,7 +88,6 @@
     }
   }
 
-  var address;
   function updateMapAddress() {
     $('#container').show();
     address = document.getElementById('address').value;

@@ -1,0 +1,18 @@
+  <br><br><br>
+  <div id="search-form">
+      <form action="/searches/new" data-remote="true" method="get">
+      <input id="address" name="auto" type="textbox" value="">
+      <button id="search-button" onclick="updateMapAddress()">Enter Address</button>
+    </div>
+
+<script type="text/javascript">
+window.onload = function() { 
+  initialize();
+  updateMapAddress();
+  findNearbyPlaces(<%= @search.input %>, searchType);
+}
+</script>
+
+
+<%= render 'welcome/map' %>
+

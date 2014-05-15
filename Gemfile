@@ -33,8 +33,6 @@ gem "pry-rails"
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'yelpster'
-gem 'unitwise', require: ['unitwise/ext']
 
 gem 'jquery-ui-rails'
 

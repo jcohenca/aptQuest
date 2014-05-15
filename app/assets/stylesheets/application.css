@@ -16,6 +16,8 @@
  */
 
 #hero {
+  max-width: 100%;
+  height: auto;
   background-image: url('bg3.png');
   background-size: 100%;
   height: 250px;
@@ -23,6 +25,13 @@
   margin-top: -30px;
   z-index: -1;
   position:absolute;
+}
+
+ul {
+  padding: 5px;
+  border: 1px solid black;
+  background: gray;
+  border-radius: 10px;
 }
 
 #logo {
@@ -50,19 +59,19 @@ body {
 
 #container {
   left: 150px;
-  bottom: 10px;
-  position:fixed;
+  bottom: 44px;
+  position:absolute;
   padding: -10px;
 }
 
 #search-button {
-  font-size: 19px;
+  font-size: 15px;
   border-radius: 10px;
 }
 
 #address {
-  margin-: 20px;
-  width: 600px;
+  margin-left: 125px;
+  width: 430px;
   font-size: 16px;
   border-radius: 10px;
   font-family: Century Gothic, sans-serif;
