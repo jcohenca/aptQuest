@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require_tree .
@@ -29,7 +28,6 @@
     var currentLocation   = new google.maps.LatLng(40.740289, -73.981314);
     geocoder              = new google.maps.Geocoder();
     map                   = new google.maps.Map(document.getElementById('map-canvas'), {
-
     center:       currentLocation,
     zoom:         15,
     mapTypeId:    google.maps.MapTypeId.ROADMAP 
@@ -38,13 +36,12 @@
     infowindow            = new google.maps.InfoWindow();
     service               = new google.maps.places.PlacesService(map);
     findNearbyPlaces(currentLocation);
-
   }
 
   function findNearbyPlaces(searchLocation, type) {
     var request = {
       location: searchLocation,
-      radius: 500,
+      radius: 1000,
       types: [type]
     };
    service.nearbySearch(request, handleResults); 
@@ -54,16 +51,23 @@
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
         createMarker(results[i]);
-        markers.push(marker);
-      }
-    }
+      };
+    };
   }
  
   function createMarker(place) {
     var image           = '/assets/' + searchIcon;
     var placeLoc        = place.geometry.location;
     var grabInfo        = { reference: place.reference };
-    service.getDetails(grabInfo, function(place) {
+    marker            = new google.maps.Marker({
+      map: map,
+      title: place.name,
+      icon: image,
+      animation: google.maps.Animation.DROP,
+      position: place.geometry.location,
+    });
+    markers.push(marker);
+    service.getDetails(grabInfo, function(place,status) {
       marker            = new google.maps.Marker({
         map: map,
         title: place.name,
@@ -71,24 +75,28 @@
         animation: google.maps.Animation.DROP,
         position: place.geometry.location,
       });
-      google.maps.event.addListener(marker, 'click', function() {
+      markers.push(marker);
+      var localMarker = marker;
+      google.maps.event.addListener(localMarker, 'click', function() {
         infowindow.setContent(place.name + "<br />" + place.formatted_address +"<br />" + '<a href=' + place.website + ">" + place.website + '</a>'  + "<br />" + "Rating: " + place.rating + "<br />" + place.formatted_phone_number);
         infowindow.open(map, this);
       });
     });
   }
 
- function clearMarkers() {
-    setAllMap(null);
-  }
-
   function setAllMap(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
     }
   }
 
+   function clearMarkers() {
+    setAllMap(null);
+  }
+
+
   function updateMapAddress() {
+
     $('#container').show();
     address = document.getElementById('address').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -112,8 +120,10 @@
     });
   }
 
+
+
 $(document).ready(function(){
-  $('#container').hide();
+  // $('#container').hide();
   // $("#map-canvas").hide()
   google.maps.event.addDomListener(window, 'load', initialize);
 

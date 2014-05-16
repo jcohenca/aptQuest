@@ -1,7 +1,7 @@
   <br><br><br>
   <div id="search-form">
       <form action="/searches/new" data-remote="true" method="get">
-      <input id="address" name="auto" type="textbox" value="">
+      <input id="address" name="auto" type="textbox" value="<%= @search.input %>">
       <button id="search-button" onclick="updateMapAddress()">Enter Address</button>
     </div>
 

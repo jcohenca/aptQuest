@@ -2,6 +2,7 @@
 <!-- <h1> aptQuest </h1> -->
 <div id="logo"><div id="hero"></div> <%= image_tag('logo3.png') %></div>
 
+
 <!-- address search bar -->
     <div id="search-form">
       <form action="/searches/new" data-remote="true" method="get">
@@ -9,4 +10,9 @@
       <button id="search-button" onclick="updateMapAddress()">Enter Address</button>
     </div>
 
+
 <%= render 'map' %>
+
+
+<!-- 
+    <div id="info">The hunt for an apartment can be taxing. aptQuest is here to help alleviate some of that stress. Already have a few apartments in mind? aptQuest offers a quick and easy view into the neighborhoods you are considering. We're here to help you pick the best apartment for YOU, by offering easy access to the ammenities around apartments you are already interested in.</div> -->
