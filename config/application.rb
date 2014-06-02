@@ -21,7 +21,7 @@ module AptQuestApp
   
 
 
-
+config.serve_static_assets = true
 
 
   end
