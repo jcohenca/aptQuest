@@ -41,7 +41,7 @@
   function findNearbyPlaces(searchLocation, type) {
     var request = {
       location: searchLocation,
-      radius: 1000,
+      radius: 600,
       types: [type]
     };
    service.nearbySearch(request, handleResults); 
