@@ -33,7 +33,7 @@ gem "pry-rails"
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'rspec-rails'
+
 gem 'jquery-ui-rails'
 
 
