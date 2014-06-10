@@ -9,7 +9,7 @@
   <ul id="<%= dom_id(search) %>">You searched: <%= link_to search.input, search, onclick: 'initialize()'%> at <%= search.updated_at.strftime("%I:%M%p on %m/%d/%Y") %>
 
     <%= form_for search do |f| %>  
-    <%= link_to '(remove)', search, :method => :delete, data: {confirm: "Are you sure you want to remove this search? This cannot be undone."}, remote: true %>
+    <%= link_to '(remove)', search, :method => :delete, data: {confirm: "Are you sure you want to delete this search?"}, remote: true %>
     <% end %></ul>
   <% end %>
   

@@ -15,7 +15,19 @@
  *= require_self
  */
 
+ #user_nav {
+  position: absolute;
+  padding-top: 3px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  height: 3.5%;
+  width: 100%;
+  background-color: black;
+}
+
 #hero {
+  left: 0;
   max-width: 100%;
   height: auto;
   background-image: url('bg3.png');
@@ -71,16 +83,6 @@ p {
   top: 50px;
   margin: -10px;
   font-family: Century Gothic, sans-serif;
-}
-
-#user_nav {
-  text-align: right;
-  padding: 5px;
-  margin-right: 30px;
-  width: 100%;
-  border: 1px solid gray;
-  background-color: gray;
-
 }
 
 body {
